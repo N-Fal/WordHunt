@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Board
 {
-    private HashMap<Point, Character> board = new HashMap<Point, Character>();
+    private char[][] board = new char[4][4];
 
     public Board()
     {
@@ -29,7 +29,7 @@ public class Board
         for (int i = 0 ; i < 16; i++)
         {
             Point p = possiblePoints.get((int)(Math.random() * possiblePoints.size()));
-            board.put(p, possibleLetters[i].charAt((int)(Math.random() * 6)));
+            board[p.x][p.y] = possibleLetters[i].charAt((int)(Math.random() * 6));
             possiblePoints.remove(p);
         }
     }
@@ -38,15 +38,20 @@ public class Board
     {
         StringBuilder output = new StringBuilder();
 
-        for (int x = 0; x < 4; x++)
+        for (int x = 3; x >= 0; x--)
         {
             for (int y = 0; y < 4; y++)
             {
-                output.append(board.get(new Point(x, y)) + " ");
+                output.append(board[x][y] + " ");
             }
             output.append("\n");
         }
 
         return output.toString();
+    }
+
+    public char letterAt(int row, int col)
+    {
+        return board[row][col];
     }
 }

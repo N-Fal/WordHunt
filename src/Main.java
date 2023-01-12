@@ -10,6 +10,8 @@ public class Main
         Board b = new Board();
         System.out.println(b);
 
-        
+        System.out.println(b.letterAt(0, 0));
+        System.out.println(b.letterAt(2, 2));
+        System.out.println(b.letterAt(0, 3));
     }
 }

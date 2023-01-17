@@ -1,10 +1,11 @@
+package Background;
+
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.awt.Point;
 
 public class Board
 {
-    private char[][] board = new char[4][4];
+    private final char[][] board = new char[4][4];
 
     public Board()
     {
@@ -15,9 +16,8 @@ public class Board
                 "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"
         }; // These are the letters on the dice from Boggle™. Using these to generate each board gives a higher word density and a better overall experience.
 
-        // xy points on the board point to the stored letter. Storing the board's info this way makes for efficient word-searching later
-
-        ArrayList<Point> possiblePoints = new ArrayList<Point>();
+        // all possible points on the 4x4 board
+        ArrayList<Point> possiblePoints = new ArrayList<>();
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < 4; j++)
@@ -26,6 +26,7 @@ public class Board
             }
         }
 
+        // grab a random point from the list of possibilities, choose a random "face" from a random letter "die," then add it to the board
         for (int i = 0 ; i < 16; i++)
         {
             Point p = possiblePoints.get((int)(Math.random() * possiblePoints.size()));
@@ -38,11 +39,12 @@ public class Board
     {
         StringBuilder output = new StringBuilder();
 
-        for (int x = 3; x >= 0; x--)
+        for (int x = 0; x < 4; x++)
         {
             for (int y = 0; y < 4; y++)
             {
-                output.append(board[x][y] + " ");
+                output.append(board[x][y]);
+                output.append(" ");
             }
             output.append("\n");
         }

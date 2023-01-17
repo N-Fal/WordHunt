@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
+// this class isn't a part of the final project, it's temporary and was used to generate the dictonary text file
 public class DictionaryConstructor
 {
     public DictionaryConstructor() throws IOException
@@ -17,6 +18,7 @@ public class DictionaryConstructor
         {
             String temp = siteReader.nextLine();
 
+            // filtering weird non-words + words that are too short from the final list.
             if (hasNonLetter(temp) && !hasUpperCase(temp) && temp.length() >= 3)
             {
                 writer.write(temp);

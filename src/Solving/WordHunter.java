@@ -18,9 +18,7 @@ public class WordHunter
     public boolean onBoard(String word)
     {
         word = word.toUpperCase();
-        boolean output = false;
 
-        firstLetterSearch:
         for (int row = 0; row < board.getNumRows(); row++)
         {
             for (int column = 0; column < board.getNumColumns(); column++)
@@ -28,12 +26,14 @@ public class WordHunter
                 resetVisited();
                 if (board.letterAt(row, column) == word.charAt(0))
                 {
-                    output = recursiveMethod(new Coordinate(row, column), word, 0);
-                    break firstLetterSearch;
+                    if (recursiveMethod(new Coordinate(row, column), word, 0))
+                    {
+                        return true;
+                    }
                 }
             }
         }
-        return output;
+        return false;
     }
 
     private boolean recursiveMethod(Coordinate location, String word, int letter)
@@ -49,9 +49,9 @@ public class WordHunter
                 {
                     return true;
                 }
-                else
+                else if (recursiveMethod(coordinate, word, letter))
                 {
-                    return recursiveMethod(coordinate, word, letter);
+                    return true;
                 }
             }
         }

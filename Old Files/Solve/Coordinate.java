@@ -21,6 +21,12 @@ public class Coordinate
 
     // distance formula between 2 points (pythagorean theorem)
     // integer math makes diagonal space count as the same distance as vertical or horizontal
+
+    public boolean adjacentTo(Coordinate other)
+    {
+        return distanceTo(other) <= 1;
+    }
+
     public int distanceTo(Coordinate other)
     {
         return (int)( Math.sqrt(Math.pow(Math.abs(this.getColumn() - other.getColumn()), 2) + Math.pow(Math.abs(this.getRow() - other.getRow()), 2)));

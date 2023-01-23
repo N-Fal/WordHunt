@@ -19,6 +19,13 @@ public class Board
                 board[row][column] = g.generateLetter();
     }
 
+    public Board(char[][] board)
+    {
+        numRows = board.length;
+        numColumns = board[0].length;
+        this.board = board;
+    }
+
     public char letterAt(int row, int column)
     {
         return board[row][column];

@@ -55,6 +55,7 @@ public class WordHunter
                 }
             }
         }
+        visited[location.getRow()][ location.getColumn()] = false;
         return false;
     }
 
@@ -69,14 +70,7 @@ public class WordHunter
         {
             for (boolean column : row)
             {
-                if (column)
-                {
-                    System.out.print("T ");
-                }
-                else
-                {
-                    System.out.print("F ");
-                }
+                System.out.println(column ? "T " : "F ");
             }
             System.out.println();
         }

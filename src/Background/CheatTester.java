@@ -11,7 +11,7 @@ public class CheatTester
 {
     public static void main(String[] args)
     {
-        Board b = new Board(20, 20);
+        Board b = new Board(4, 4);
         WordHunter hunter = new WordHunter(b);
         System.out.println(b);
 

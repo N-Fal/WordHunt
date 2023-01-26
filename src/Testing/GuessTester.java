@@ -1,4 +1,4 @@
-package Background;
+package Testing;
 
 import BoardGeneration.Board;
 import Solving.WordHunter;

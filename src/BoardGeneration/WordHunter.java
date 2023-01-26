@@ -1,7 +1,10 @@
-package Solving;
+package BoardGeneration;
 
-import BoardGeneration.Board;
-import BoardGeneration.Coordinate;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class WordHunter
 {
@@ -13,6 +16,36 @@ public class WordHunter
     {
         board = b;
         resetVisited();
+    }
+
+    public HashSet<String> getWordSet()
+    {
+        HashSet<String> output = new HashSet<String>();
+
+        Scanner dictionaryReader = null;
+        try
+        {
+            dictionaryReader = new Scanner(new File("src/Dictionary/dictionary.txt"));
+        } catch (FileNotFoundException e)
+        {
+            System.out.println("Dictionary file not found, please check your directory and try again.");
+            System.exit(0);
+        }
+
+        while (dictionaryReader.hasNext())
+        {
+            String word = dictionaryReader.nextLine();
+            if (this.onBoard(word))
+            {
+                output.add(word);
+            }
+        }
+
+//        for (String s : output)
+//        {
+//            System.out.println(s);
+//        }
+        return output;
     }
 
     public boolean onBoard(String word)

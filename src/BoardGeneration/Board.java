@@ -1,5 +1,6 @@
 package BoardGeneration;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Board
@@ -17,6 +18,11 @@ public class Board
         for (int row = 0; row < numRows; row++)
             for (int column = 0; column < numColumns; column++)
                 board[row][column] = g.generateLetter();
+    }
+
+    public Board(Dimension dimension)
+    {
+        this(dimension.height, dimension.width);
     }
 
     public Board(char[][] board)

@@ -1,6 +1,6 @@
 package BoardGeneration;
 
-public class Coordinate
+class Coordinate
 {
     private int row, column;
 

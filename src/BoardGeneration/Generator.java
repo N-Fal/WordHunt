@@ -1,6 +1,6 @@
 package BoardGeneration;
 
-public class Generator
+class Generator
 {
     private double[] percentages;
 

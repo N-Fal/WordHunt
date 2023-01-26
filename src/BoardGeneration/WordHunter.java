@@ -1,4 +1,4 @@
-package Solving;
+package BoardGeneration;
 
 import BoardGeneration.Board;
 import BoardGeneration.Coordinate;

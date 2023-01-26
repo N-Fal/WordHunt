@@ -1,7 +1,7 @@
 package Testing;
 
 import BoardGeneration.Board;
-import Solving.WordHunter;
+import BoardGeneration.WordHunter;
 
 import java.io.File;
 import java.io.FileNotFoundException;

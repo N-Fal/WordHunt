@@ -1,17 +1,20 @@
 package GUI;
 
 import BoardGeneration.Board;
+import BoardGeneration.Coordinate;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 public class BoardListener
 {
     private final BoardPanel parentPanel;
     private final LetterBox[][] boardGraphics;
     private final StringBuilder input;
+    private Coordinate lastVisited;
     private boolean mouseHeld;
 
     public BoardListener(LetterBox[][] boardGraphics, BoardPanel panel )
@@ -32,12 +35,18 @@ public class BoardListener
             {
                 LetterBox temp = boardGraphics[row][column];
 
-                if (temp.inBounds(mouseX, mouseY) && !temp.isChosen())
+                if (input.length() == 0)
+                {
+                    lastVisited = new Coordinate(row, column);
+                }
+
+                if (temp.inBounds(mouseX, mouseY) && !temp.isChosen() && lastVisited.adjacentTo(new Coordinate(row, column)))
                 {
                     temp.setChosen(true);
                     parentPanel.repaint();
                     input.append(temp.getLetter());
-                    System.out.println(row + "," + column);
+                    // System.out.println(row + "," + column);
+                    lastVisited = new Coordinate(row, column);
                 }
             }
         }

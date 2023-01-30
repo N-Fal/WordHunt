@@ -24,7 +24,7 @@ public class Coordinate
 
     public boolean adjacentTo(Coordinate other)
     {
-        return distanceTo(other) == 1;
+        return distanceTo(other) <= 1;
     }
 
     public int distanceTo(Coordinate other)

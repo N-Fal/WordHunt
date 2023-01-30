@@ -20,8 +20,6 @@ public class LetterBox
         posY = y;
         sideLength = s;
 
-        //System.out.println("x: " + posX + " y: " + posY + "s: " + sideLength);
-
         g.drawRect(x, y, sideLength, sideLength);
         g.setColor((chosen) ? Color.GREEN : Color.WHITE);
         g.fillRect(x + 1, y + 1, sideLength - 1 ,sideLength - 1);

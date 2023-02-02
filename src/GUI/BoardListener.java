@@ -1,13 +1,11 @@
 package GUI;
 
-import BoardGeneration.Board;
 import BoardGeneration.Coordinate;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 
 public class BoardListener
 {
@@ -17,11 +15,11 @@ public class BoardListener
     private Coordinate lastVisited;
     private boolean mouseHeld;
 
-    public BoardListener(LetterBox[][] boardGraphics, BoardPanel panel )
+    public BoardListener(LetterBox[][] boardGraphics, BoardPanel panel)
     {
         parentPanel = panel;
         this.boardGraphics = boardGraphics;
-        input = new StringBuilder();
+        input = new StringBuilder(" ");
     }
 
     private void check()
@@ -50,6 +48,11 @@ public class BoardListener
                 }
             }
         }
+
+        if (input.length() == 0)
+        {
+            input.append(" ");
+        }
     }
 
     private final MouseMotionListener motionListener = new MouseMotionListener()
@@ -58,6 +61,7 @@ public class BoardListener
         public void mouseDragged(MouseEvent e)
         {
             check();
+            parentPanel.getParentFrame().repaint();
         }
 
         @Override
@@ -73,7 +77,9 @@ public class BoardListener
         public void mousePressed(MouseEvent e)
         {
             mouseHeld = true;
+            input.setLength(0);
             check();
+            parentPanel.getParentFrame().repaint();
         }
 
         @Override
@@ -88,9 +94,16 @@ public class BoardListener
                 }
             }
 
-            System.out.println(input);
-            input.setLength(0);
-            parentPanel.repaint();
+            if (parentPanel.boardHasWord(getInput()) && !parentPanel.inList(getInput()))
+            {
+                // System.out.println(parentPanel.boardHasWord(getInput()));
+                // System.out.println(parentPanel.inList(getInput()));
+
+                parentPanel.wordFound(getInput().toLowerCase());
+                // System.out.println("added " + getInput() + " to the list of found words.");
+            }
+
+            parentPanel.getParentFrame().repaint();
         }
 
         @Override
@@ -111,5 +124,25 @@ public class BoardListener
     public MouseListener getButton()
     {
         return buttonListener;
+    }
+
+    public String getInputHTML()
+    {
+        StringBuilder output = new StringBuilder();
+        output.append("<html>");
+
+        for (int i = 0; i < input.length(); i += 16)
+        {
+            output.append(input.substring(i, Math.min(i + 16, input.length())));
+            output.append("<br/>");
+        }
+
+        output.append("</html>");
+        return output.toString();
+    }
+
+    public String getInput()
+    {
+        return input.toString();
     }
 }

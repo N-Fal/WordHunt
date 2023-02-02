@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Word Hunt:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Word_Hunt_jar</output-path>
+    <root id="archive" name="Word Hunt.jar">
+      <element id="module-output" name="Word Hunt" />
+      <element id="module-source" name="Word Hunt" />
+    </root>
+  </artifact>
+</component>

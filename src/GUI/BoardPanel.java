@@ -102,9 +102,9 @@ public class BoardPanel extends JPanel
         Scanner dictReader = null;
         try
         {
-            dictReader = new Scanner(new File("src/Dictionary/dictionary.txt"));
+            dictReader = new Scanner(getClass().getResourceAsStream("/Dictionary/dictionary.txt"));
         }
-        catch (FileNotFoundException e)
+        catch (NullPointerException e)
         {
             System.out.println("Dictionary file not found.");
             System.exit(0);

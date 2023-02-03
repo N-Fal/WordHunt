@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -116,7 +117,7 @@ public class BoardPanel extends JPanel
             if (hunter.onBoard(word))
             {
                 boardWords.add(word);
-                System.out.println(word);
+                // System.out.println(word);
             }
         }
     }
@@ -144,5 +145,17 @@ public class BoardPanel extends JPanel
     public int getNumWords()
     {
         return boardWords.size();
+    }
+
+    public String[] getAllWords()
+    {
+        String[] output = boardWords.toArray(new String[0]);
+        Arrays.sort(output);
+
+        for (int i = 0; i < output.length; i++)
+        {
+            output[i] = 1 + i + ". " + output[i];
+        }
+        return output;
     }
 }

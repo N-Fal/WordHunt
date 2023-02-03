@@ -42,8 +42,6 @@ public class Frame extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                System.out.println("You clicked new board!");
-
                 int rows, columns;
                 try
                 {
@@ -66,7 +64,29 @@ public class Frame extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 // new frame with scrolling jlist with every word in boardPanel
-                System.out.println("You clicked show words!");
+                JFrame wordFrame = new JFrame("Word List");
+                Dimension size = new Dimension(360, 480);
+                wordFrame.setResizable(false);
+                wordFrame.setSize(size);
+                wordFrame.setMinimumSize(size);
+
+
+
+                JList<String> wordList = new JList<>();
+                wordList.setListData(boardPanel.getAllWords());
+                wordList.setFont(new Font("Inconsolata", Font.PLAIN, 20));
+
+                wordList.setSize(size);
+                wordList.setMinimumSize(size);
+
+                JScrollPane scrollPane = new JScrollPane();
+                scrollPane.setViewportView(wordList);
+
+                wordFrame.add(scrollPane);
+
+                wordFrame.pack();
+                wordFrame.setLocation(getX() + getWidth() / 2, getY());
+                wordFrame.setVisible(true);
             }
         });
 
@@ -82,7 +102,7 @@ public class Frame extends JFrame
         this.setFocusable(true);
         this.setVisible(true);
 
-        titleBarSize = this.getInsets().top;
+        titleBarSize = this.getInsets().top + menuBar.getHeight();
     }
 
     public int getTitleBarSize()

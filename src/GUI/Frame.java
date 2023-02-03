@@ -4,6 +4,7 @@ import Backend.Main;
 import BoardGeneration.Board;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Frame extends JFrame
 {
@@ -22,6 +23,11 @@ public class Frame extends JFrame
         this.setSize(720, 480);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Word Hunt");
+
+        LetterBox iconBox = new LetterBox('W');
+        BufferedImage icon = new BufferedImage(30, 30, BufferedImage.TYPE_INT_RGB);
+        iconBox.drawSelf(1, 1, 27, icon.getGraphics());
+        this.setIconImage(icon);
 
         layout = new GridLayout(1, 2);
         this.setLayout(layout);
@@ -54,7 +60,6 @@ public class Frame extends JFrame
         JMenuItem showWords = new JMenuItem("Show Words");
         showWords.addActionListener(e ->
         {
-            // new frame with scrolling jlist with every word in boardPanel
             JFrame wordFrame = new JFrame("Word List");
             Dimension size = new Dimension(360, 480);
             wordFrame.setResizable(false);

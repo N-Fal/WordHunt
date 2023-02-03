@@ -12,6 +12,8 @@ public class OptionsPanel extends JPanel
     private final BorderLayout layout;
     private final JLabel inputLabel, numFoundLabel;
 
+    private final JLabel timerLabel;
+
     private final JList<String> wordList;
 
     public OptionsPanel(Frame parent, BoardPanel bp)
@@ -38,7 +40,12 @@ public class OptionsPanel extends JPanel
         // numFoundLabel.setBorder(new LineBorder(Color.BLACK));
         numFoundLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numFoundLabel.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(numFoundLabel, BorderLayout.PAGE_END);
+
+
+        timerLabel = new JLabel();
+        timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timerLabel.setVerticalAlignment(SwingConstants.CENTER);
+
 
         wordList = new JList<>();
         wordList.setBorder(new LineBorder(Color.BLACK));
@@ -47,7 +54,6 @@ public class OptionsPanel extends JPanel
         wordList.setLayoutOrientation(JList.VERTICAL);
 
         this.add(scrollPane, BorderLayout.CENTER);
-
 
         this.add(Box.createRigidArea(new Dimension()), BorderLayout.LINE_START);
         this.add(Box.createRigidArea(new Dimension()), BorderLayout.LINE_END);
@@ -73,7 +79,7 @@ public class OptionsPanel extends JPanel
             inputLabel.setForeground(Color.BLACK);
         }
 
-        inputLabel.setText(boardPanel.getInput());
+        inputLabel.setText(boardPanel.getInputHTML());
         inputLabel.setFont(new Font("Inconsolata", Font.BOLD, Math.min(getWidth(), getHeight()) / 11));
 
         numFoundLabel.setText(boardPanel.getList().size() + " / " + boardPanel.getNumWords());

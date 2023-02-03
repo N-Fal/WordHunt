@@ -20,7 +20,7 @@ public class BoardPanel extends JPanel
 
     private final Board board;
     private final HashSet<String> boardWords;
-    private ArrayList<String> foundWords;
+    private final ArrayList<String> foundWords;
 
 
     public BoardPanel(Board b, Frame f)
@@ -62,12 +62,6 @@ public class BoardPanel extends JPanel
         int boxHeight = this.getHeight() / board.getNumRows();
         int boxWidth = this.getWidth() / board.getNumColumns();
         int boxSize = Math.min(boxHeight, boxWidth) - boxBorderSize;
-
-        Dimension size = new Dimension(board.getNumColumns() * (boxSize + boxBorderSize), board.getNumRows() * (boxSize + boxBorderSize));
-//        this.setSize(size);
-//        this.setPreferredSize(size);
-//        this.setMaximumSize(size);
-//        this.setMinimumSize(size);
 
         int penX = boxBorderSize / 2, penY = boxBorderSize / 2;
         for (int row = 0; row < board.getNumRows(); row++)

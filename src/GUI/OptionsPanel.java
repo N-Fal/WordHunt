@@ -3,19 +3,16 @@ package GUI;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class OptionsPanel extends JPanel
 {
-    private Frame parentFrame;
-    private BoardPanel boardPanel;
+    private final Frame parentFrame;
+    private final BoardPanel boardPanel;
+    private final BorderLayout layout;
+    private final JLabel inputLabel, numFoundLabel;
 
-    private BorderLayout layout;
-    private JLabel inputLabel, numFoundLabel;
-
-    private JList<String> wordList;
+    private final JList<String> wordList;
 
     public OptionsPanel(Frame parent, BoardPanel bp)
     {
@@ -54,11 +51,6 @@ public class OptionsPanel extends JPanel
 
         this.add(Box.createRigidArea(new Dimension()), BorderLayout.LINE_START);
         this.add(Box.createRigidArea(new Dimension()), BorderLayout.LINE_END);
-        // this.add(Box.createRigidArea(new Dimension()), BorderLayout.PAGE_END);
-
-//        timerLabel = new JLabel();
-//        timerLabel.setBorder(new LineBorder(Color.BLACK));
-//        this.add(timerLabel);
     }
 
     @Override

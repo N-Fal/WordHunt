@@ -2,7 +2,7 @@ package BoardGeneration;
 
 public class Coordinate
 {
-    private int row, column;
+    private final int row, column;
 
     public Coordinate(int r, int c)
     {

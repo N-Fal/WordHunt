@@ -13,7 +13,6 @@ public class BoardListener
     private final LetterBox[][] boardGraphics;
     private final StringBuilder input;
     private Coordinate lastVisited;
-    private boolean mouseHeld;
 
     public BoardListener(LetterBox[][] boardGraphics, BoardPanel panel)
     {
@@ -76,7 +75,6 @@ public class BoardListener
         @Override
         public void mousePressed(MouseEvent e)
         {
-            mouseHeld = true;
             input.setLength(0);
             check();
             parentPanel.getParentFrame().repaint();
@@ -85,22 +83,17 @@ public class BoardListener
         @Override
         public void mouseReleased(MouseEvent e)
         {
-            mouseHeld = false;
-            for (int row = 0; row < boardGraphics.length; row++)
+            for (LetterBox[] boardGraphic : boardGraphics)
             {
                 for (int column = 0; column < boardGraphics[0].length; column++)
                 {
-                    boardGraphics[row][column].setChosen(false);
+                    boardGraphic[column].setChosen(false);
                 }
             }
 
             if (parentPanel.boardHasWord(getInput()) && !parentPanel.inList(getInput()))
             {
-                // System.out.println(parentPanel.boardHasWord(getInput()));
-                // System.out.println(parentPanel.inList(getInput()));
-
                 parentPanel.wordFound(getInput().toLowerCase());
-                // System.out.println("added " + getInput() + " to the list of found words.");
             }
 
             parentPanel.getParentFrame().repaint();

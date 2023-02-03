@@ -1,12 +1,9 @@
 package BoardGeneration;
 
-import BoardGeneration.Board;
-import BoardGeneration.Coordinate;
-
 public class WordHunter
 {
 
-    private Board board;
+    private final Board board;
     private boolean[][] visited;
 
     public WordHunter(Board b)

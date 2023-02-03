@@ -4,16 +4,14 @@ import Backend.Main;
 import BoardGeneration.Board;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Frame extends JFrame
 {
     private final int titleBarSize;
-    private GridLayout layout;
+    private final GridLayout layout;
 
-    private BoardPanel boardPanel;
-    private OptionsPanel optionsPanel;
+    private final BoardPanel boardPanel;
+    private final OptionsPanel optionsPanel;
 
     public Frame()
     {
@@ -37,57 +35,49 @@ public class Frame extends JFrame
         JMenu optionsMenu = new JMenu("Options");
 
         JMenuItem newBoard = new JMenuItem("New Board");
-        newBoard.addActionListener(new ActionListener()
+        newBoard.addActionListener(e ->
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
+            int rows1, columns1;
+            try
             {
-                int rows, columns;
-                try
-                {
-                    rows = Integer.parseInt(JOptionPane.showInputDialog("How many rows do you want?"));
-                    columns = Integer.parseInt(JOptionPane.showInputDialog("How many columns do you want?"));
-                    Main.init(rows, columns);
-                }
-                catch(NumberFormatException f)
-                {
-                    JOptionPane.showMessageDialog(null, "Invalid input, creating a 4x4 board.");
-                    Main.init(4, 4);
-                }
+                rows1 = Integer.parseInt(JOptionPane.showInputDialog("How many rows do you want?"));
+                columns1 = Integer.parseInt(JOptionPane.showInputDialog("How many columns do you want?"));
+                Main.init(rows1, columns1);
+            }
+            catch(NumberFormatException f)
+            {
+                JOptionPane.showMessageDialog(null, "Invalid input, creating a 4x4 board.");
+                Main.init(4, 4);
             }
         });
 
         JMenuItem showWords = new JMenuItem("Show Words");
-        showWords.addActionListener(new ActionListener()
+        showWords.addActionListener(e ->
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                // new frame with scrolling jlist with every word in boardPanel
-                JFrame wordFrame = new JFrame("Word List");
-                Dimension size = new Dimension(360, 480);
-                wordFrame.setResizable(false);
-                wordFrame.setSize(size);
-                wordFrame.setMinimumSize(size);
+            // new frame with scrolling jlist with every word in boardPanel
+            JFrame wordFrame = new JFrame("Word List");
+            Dimension size = new Dimension(360, 480);
+            wordFrame.setResizable(false);
+            wordFrame.setSize(size);
+            wordFrame.setMinimumSize(size);
 
 
 
-                JList<String> wordList = new JList<>();
-                wordList.setListData(boardPanel.getAllWords());
-                wordList.setFont(new Font("Inconsolata", Font.PLAIN, 20));
+            JList<String> wordList = new JList<>();
+            wordList.setListData(boardPanel.getAllWords());
+            wordList.setFont(new Font("Inconsolata", Font.PLAIN, 20));
 
-                wordList.setSize(size);
-                wordList.setMinimumSize(size);
+            wordList.setSize(size);
+            wordList.setMinimumSize(size);
 
-                JScrollPane scrollPane = new JScrollPane();
-                scrollPane.setViewportView(wordList);
+            JScrollPane scrollPane = new JScrollPane();
+            scrollPane.setViewportView(wordList);
 
-                wordFrame.add(scrollPane);
+            wordFrame.add(scrollPane);
 
-                wordFrame.pack();
-                wordFrame.setLocation(getX() + getWidth() / 2, getY());
-                wordFrame.setVisible(true);
-            }
+            wordFrame.pack();
+            wordFrame.setLocation(getX() + getWidth() / 2, getY());
+            wordFrame.setVisible(true);
         });
 
         optionsMenu.add(newBoard);

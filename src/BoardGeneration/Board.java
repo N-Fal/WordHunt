@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Board
 {
-    private char[][] board;
-    private int numRows, numColumns;
+    private final char[][] board;
+    private final int numRows, numColumns;
 
     public Board(int numRows, int numColumns)
     {
@@ -33,7 +33,7 @@ public class Board
 
     public ArrayList<Coordinate> getSurrounding(Coordinate coordinate)
     {
-        ArrayList<Coordinate> output = new ArrayList<Coordinate>();
+        ArrayList<Coordinate> output = new ArrayList<>();
 
         for (int row = 0; row < numRows; row++)
         {

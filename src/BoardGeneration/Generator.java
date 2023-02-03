@@ -2,7 +2,7 @@ package BoardGeneration;
 
 public class Generator
 {
-    private double[] percentages;
+    private final double[] percentages;
 
     public Generator()
     {

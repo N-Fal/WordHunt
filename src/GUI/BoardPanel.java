@@ -6,8 +6,6 @@ import BoardGeneration.WordHunter;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -16,7 +14,7 @@ public class BoardPanel extends JPanel
 {
     private final Frame parentFrame;
     private final LetterBox[][] boardGraphics;
-    private final int boxBorderSize = 20;
+    private int boxBorderSize = 20;
     private final BoardListener listener;
 
     private final Board board;
@@ -57,6 +55,8 @@ public class BoardPanel extends JPanel
         g.setColor(Color.ORANGE);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.BLACK);
+
+        boxBorderSize = getWidth() / 18;
 
         int boxHeight = this.getHeight() / board.getNumRows();
         int boxWidth = this.getWidth() / board.getNumColumns();

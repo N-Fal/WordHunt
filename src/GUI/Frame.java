@@ -4,6 +4,8 @@ import Backend.Main;
 import BoardGeneration.Board;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class Frame extends JFrame
@@ -90,9 +92,33 @@ public class Frame extends JFrame
         menuBar.add(optionsMenu);
         this.setJMenuBar(menuBar);
 
+        JMenu timerMenu = new JMenu("Timer");
+        JMenuItem start = new JMenuItem("Start");
+        start.addActionListener(e ->
+        {
+            int seconds;
+            {
+                try
+                {
+                    seconds = Integer.parseInt(JOptionPane.showInputDialog("How much time do you want? (seconds)"));
+                }
+                catch (NumberFormatException f)
+                {
+                    seconds = 60;
+                }
+            }
+            optionsPanel.getTimerLabel().start(seconds);
+        });
 
+        JMenuItem pause = new JMenuItem("Stop");
+        pause.addActionListener(e ->
+        {
+            optionsPanel.getTimerLabel().stop();
+        });
 
-
+        timerMenu.add(start);
+        timerMenu.add(pause);
+        menuBar.add(timerMenu);
 
         this.setFocusable(true);
         this.setVisible(true);

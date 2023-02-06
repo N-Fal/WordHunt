@@ -1,5 +1,7 @@
 package GUI;
 
+import Backend.Stopwatch;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -11,8 +13,10 @@ public class OptionsPanel extends JPanel
     private final BoardPanel boardPanel;
     private final BorderLayout layout;
     private final JLabel inputLabel, numFoundLabel;
+    private final TimerLabel timerLabel;
+    private final JPanel bottomPanel;
+    private final FlowLayout bottomLayout;
 
-    private final JLabel timerLabel;
 
     private final JList<String> wordList;
 
@@ -40,12 +44,21 @@ public class OptionsPanel extends JPanel
         // numFoundLabel.setBorder(new LineBorder(Color.BLACK));
         numFoundLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numFoundLabel.setVerticalAlignment(SwingConstants.CENTER);
+        numFoundLabel.setForeground(Color.BLACK);
 
-
-        timerLabel = new JLabel();
+        timerLabel = new TimerLabel();
         timerLabel.setHorizontalAlignment(SwingConstants.CENTER);
         timerLabel.setVerticalAlignment(SwingConstants.CENTER);
 
+        bottomPanel = new JPanel();
+        bottomPanel.setBackground(new Color(28, 185, 176));
+        bottomLayout = new FlowLayout();
+        bottomPanel.setLayout(bottomLayout);
+
+        bottomPanel.add(numFoundLabel);
+        bottomPanel.add(timerLabel);
+
+        this.add(bottomPanel, BorderLayout.PAGE_END);
 
         wordList = new JList<>();
         wordList.setBorder(new LineBorder(Color.BLACK));
@@ -83,7 +96,9 @@ public class OptionsPanel extends JPanel
         inputLabel.setFont(new Font("Inconsolata", Font.BOLD, Math.min(getWidth(), getHeight()) / 11));
 
         numFoundLabel.setText(boardPanel.getList().size() + " / " + boardPanel.getNumWords());
-        inputLabel.setFont(new Font("Inconsolata", Font.BOLD, Math.min(getWidth(), getHeight()) / 11));
+        numFoundLabel.setFont(new Font("Inconsolata", Font.BOLD, Math.min(getWidth(), getHeight()) / 11));
+        bottomLayout.setHgap(Math.max(getWidth(), getHeight()) / 11);
+        timerLabel.setFont(new Font("Inconsolata", Font.BOLD, Math.min(getWidth(), getHeight()) / 11));
 
         String[] words = boardPanel.getList().toArray(new String[0]);
         Arrays.sort(words);
@@ -100,5 +115,10 @@ public class OptionsPanel extends JPanel
     public BoardPanel getBoardPanel()
     {
         return boardPanel;
+    }
+
+    public TimerLabel getTimerLabel()
+    {
+        return timerLabel;
     }
 }

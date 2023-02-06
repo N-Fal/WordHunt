@@ -16,6 +16,8 @@ public class Frame extends JFrame
     private final BoardPanel boardPanel;
     private final OptionsPanel optionsPanel;
 
+    private JFrame wordFrame;
+
     public Frame()
     {
         this(4, 4);
@@ -39,6 +41,8 @@ public class Frame extends JFrame
         this.add(boardPanel);
         this.add(optionsPanel);
 
+        wordFrame = new JFrame();
+
         JMenuBar menuBar = new JMenuBar();
         JMenu optionsMenu = new JMenu("Options");
 
@@ -46,6 +50,7 @@ public class Frame extends JFrame
         newBoard.addActionListener(e ->
         {
             int rows1, columns1;
+            wordFrame.dispose();
             try
             {
                 rows1 = Integer.parseInt(JOptionPane.showInputDialog("How many rows do you want?"));
@@ -62,7 +67,8 @@ public class Frame extends JFrame
         JMenuItem showWords = new JMenuItem("Show Words");
         showWords.addActionListener(e ->
         {
-            JFrame wordFrame = new JFrame("Word List");
+            wordFrame.dispose();
+            wordFrame = new JFrame("Word List");
             Dimension size = new Dimension(360, 480);
             wordFrame.setResizable(false);
             wordFrame.setSize(size);
@@ -91,34 +97,6 @@ public class Frame extends JFrame
         optionsMenu.add(showWords);
         menuBar.add(optionsMenu);
         this.setJMenuBar(menuBar);
-
-        JMenu timerMenu = new JMenu("Timer");
-        JMenuItem start = new JMenuItem("Start");
-        start.addActionListener(e ->
-        {
-            int seconds;
-            {
-                try
-                {
-                    seconds = Integer.parseInt(JOptionPane.showInputDialog("How much time do you want? (seconds)"));
-                }
-                catch (NumberFormatException f)
-                {
-                    seconds = 60;
-                }
-            }
-            optionsPanel.getTimerLabel().start(seconds);
-        });
-
-        JMenuItem pause = new JMenuItem("Stop");
-        pause.addActionListener(e ->
-        {
-            optionsPanel.getTimerLabel().stop();
-        });
-
-        timerMenu.add(start);
-        timerMenu.add(pause);
-        menuBar.add(timerMenu);
 
         this.setFocusable(true);
         this.setVisible(true);

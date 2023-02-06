@@ -60,16 +60,4 @@ public class WordHunter
     {
         visited = new boolean[board.getNumRows()][board.getNumColumns()];
     }
-
-    public void printVisited()
-    {
-        for (boolean[] row : visited)
-        {
-            for (boolean column : row)
-            {
-                System.out.println(column ? "T " : "F ");
-            }
-            System.out.println();
-        }
-    }
 }

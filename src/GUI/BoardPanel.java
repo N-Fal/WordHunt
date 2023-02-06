@@ -6,16 +6,12 @@ import BoardGeneration.WordHunter;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class BoardPanel extends JPanel
 {
     private final Frame parentFrame;
     private final LetterBox[][] boardGraphics;
-    private int boxBorderSize = 20;
     private final BoardListener listener;
 
     private final Board board;
@@ -57,7 +53,7 @@ public class BoardPanel extends JPanel
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.BLACK);
 
-        boxBorderSize = getWidth() / 18;
+        int boxBorderSize = getWidth() / 18;
 
         int boxHeight = this.getHeight() / board.getNumRows();
         int boxWidth = this.getWidth() / board.getNumColumns();
@@ -97,7 +93,7 @@ public class BoardPanel extends JPanel
         Scanner dictReader = null;
         try
         {
-            dictReader = new Scanner(getClass().getResourceAsStream("/Dictionary/dictionary.txt"));
+            dictReader = new Scanner(Objects.requireNonNull(getClass().getResourceAsStream("/Dictionary/dictionary.txt")));
         }
         catch (NullPointerException e)
         {

@@ -9,7 +9,6 @@ public class OptionsPanel extends JPanel
 {
     private final Frame parentFrame;
     private final BoardPanel boardPanel;
-    private final BorderLayout layout;
     private final JLabel inputLabel, numFoundLabel;
 
 
@@ -23,7 +22,7 @@ public class OptionsPanel extends JPanel
         parentFrame = parent;
         boardPanel = bp;
 
-        layout = new BorderLayout();
+        BorderLayout layout = new BorderLayout();
         layout.setHgap(20);
         layout.setVgap(20);
         this.setLayout(layout);

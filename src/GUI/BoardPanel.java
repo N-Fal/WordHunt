@@ -97,7 +97,7 @@ public class BoardPanel extends JPanel
         }
         catch (NullPointerException e)
         {
-            System.out.println("Dictionary file not found.");
+            JOptionPane.showMessageDialog(null, "dictionary.txt not found", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
 
